@@ -1,0 +1,17 @@
+<p>
+	<strong>프로젝트명:</strong>
+	<%= @project.프로젝트명 %>
+</p>
+
+<p>
+	<strong>일정:</strong>
+	<%= @project.일정 %>
+</p>
+
+<p> 
+	<strong>목표:</strong>
+	<%= @project.목표 %>
+</p>
+
+<%=link_to 'Edit', edit_project_path(@project) %>
+<%=link_to 'Back', projects_path %>

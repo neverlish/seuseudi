@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  프로젝트명: MyString
+  일정: MyString
+  목표: MyString
+
+two:
+  프로젝트명: MyString
+  일정: MyString
+  목표: MyString
