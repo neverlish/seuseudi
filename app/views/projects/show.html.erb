@@ -15,10 +15,12 @@
 
 <h4>댓글</h4>
 <% @project.comments.each do |comment| %>
- 
-  <p>
+	<p>
     <strong><%=comment.user.username %></strong>
     <%= comment.body %>
+  <% if comment.user.id == current_user.id %>
+  	<%= link_to "삭제", project_comment_path(@project, comment), method: "delete" %>
+  <% end %>
   </p>
 <% end %>
 
@@ -35,4 +37,3 @@
 
 <%=link_to 'Edit', edit_project_path(@project) %>
 <%=link_to 'Back', projects_path %>
-
