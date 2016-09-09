@@ -13,14 +13,21 @@
 	<%= @project.목표 %>
 </p>
 
+<%= @project.likes.size %> 명이 좋아합니다.
+<% if current_user.is_like?(@project) %>
+    <%= link_to "좋아요 취소", project_like_path(@project), method: "post" %>
+<% else %>
+    <%= link_to "좋아요", project_like_path(@project), method: "post" %>
+<% end %>
+
 <h4>댓글</h4>
 <% @project.comments.each do |comment| %>
 	<p>
     <strong><%=comment.user.username %></strong>
     <%= comment.body %>
-  <% if comment.user.id == current_user.id %>
-  	<%= link_to "삭제", project_comment_path(@project, comment), method: "delete" %>
-  <% end %>
+  	<% if comment.user.id == current_user.id %>
+  	 <%= link_to "삭제", project_comment_path(@project, comment), method: "delete" %>
+  	<% end %>
   </p>
 <% end %>
 

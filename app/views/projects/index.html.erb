@@ -10,9 +10,15 @@
 		<tr>
 			<td><%=project.프로젝트명 %></td>
 			<td><%=project.목표 %></td>
-			<td><%=link_to 'Show', project_path(project) %></td>
-			<td><%=link_to 'Edit', edit_project_path(project) %></td>
-			<td><%=link_to 'Destroy', project_path(project), method: :delete, data: { confirm: 'Are you sure?'} %></td>
+			<td><%=link_to '보기', project_path(project) %></td>
+			<td><% if project.user.id == current_user.id %>
+  	 		<%= link_to '|삭제', project_path(project), method: "delete", data: {confirm: 'Are you sure?'} %>
+  			<% end %>
+  		</td>
+			<td><% if project.user.id == current_user.id %>
+				<%=link_to '|편집', edit_project_path(project) %>
+				<% end %>
+			</td>
 		</tr>
 	<% end %>
 </table>
