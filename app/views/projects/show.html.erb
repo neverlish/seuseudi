@@ -1,46 +1,70 @@
-<p>
-	<strong>프로젝트명:</strong>
-	<%= @project.프로젝트명 %>
-</p>
+<h3><%= @project.프로젝트명 %></h3>
+<div class="text-right">
+	<% if current_user == @project.user %>
+		<%= link_to edit_project_path(@project) do %>
+			<span class="glyphicon glyphicon-edit"></span>
+		<% end %>
+		<%= link_to project_path(@project), method: "delete", data: {confirm: 'Are you sure?'} do %>
+			<span class="glyphicon glyphicon-trash"></span>
+		<% end %>
+	<% end %>
+</div>
 
-<p>
-	<strong>일정:</strong>
-	<%= @project.일정 %>
-</p>
+<div class="row">
+	<div class="col-md-6 col-sm-6 col-xs-12">
+		<div class="alert alert-warning">
+			<span class="glyphicon glyphicon-exclamation-sign"></span>
+			<%= @project.목표 %>
+		</div>
+	</div>
+	<div class="col-md-6 col-sm-6 col-xs-12">
+		<div class="alert alert-info">
+			<span class="glyphicon glyphicon-calendar"></span>
+			<%= @project.일정 %>
+		</div>
+	</div>
+</div>
 
-<p> 
-	<strong>목표:</strong>
-	<%= @project.목표 %>
-</p>
+<div class="alert alert-success">
+	<span class="glyphicon glyphicon-th-list"></span>
+</div>
+<ul class="list-group">
+  <li class="list-group-item">
+    <span class="badge">14</span>
+    Cras justo odio
+  </li>
+</ul>
 
-<%= @project.likes.size %> 명이 좋아합니다.
 <% if current_user.is_like?(@project) %>
-    <%= link_to "좋아요 취소", project_like_path(@project), method: "post" %>
+  <%= link_to project_like_path(@project), method: "post" do %>
+  	<span class="glyphicon glyphicon-thumbs-down"></span>
+  <% end %>
 <% else %>
-    <%= link_to "좋아요", project_like_path(@project), method: "post" %>
+  <%= link_to project_like_path(@project), method: "post" do %>
+  	<span class="glyphicon glyphicon-thumbs-up"></span>
+  <% end %>
 <% end %>
+<%= @project.likes.size %> likes
 
-<h4>댓글</h4>
+<hr>
+<br>
 <% @project.comments.each do |comment| %>
 	<p>
     <strong><%=comment.user.username %></strong>
     <%= comment.body %>
   	<% if comment.user.id == current_user.id %>
-  	 <%= link_to "삭제", project_comment_path(@project, comment), method: "delete" %>
+  	 <%= link_to project_comment_path(@project, comment), method: "delete" do %>
+  	 	<span class="glyphicon glyphicon-trash"></span>
+  	 <% end %>
   	<% end %>
   </p>
 <% end %>
-
-<h4>댓글달기</h4>
-<%=form_for([@project, @project.comments.build]) do |f| %>
+<div class="form-group">
+<%= form_for([@project, @project.comments.build]) do |f| %>
 	<p>	
-		<%= f.label :comment %><br>
-		<%= f.text_area :body %>
+		<%= f.text_area :body, class: "form-control", placeholder: "new comment" %>
 	</p>
 	<p>
-		<%= f.submit %>
+		<%= f.submit class: "btn btn-default" %>
 	</p>
 <% end %>
-
-<%=link_to 'Edit', edit_project_path(@project) %>
-<%=link_to 'Back', projects_path %>

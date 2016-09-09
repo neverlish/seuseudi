@@ -1,24 +1,27 @@
 <h1>프로젝트</h1>
-<%= link_to '새 프로젝트', new_project_path %>
-<table>
-	<tr>
-		<th>프로젝트명</th>
-		<th>소개</th>
-	</tr>
-
+<%= link_to new_project_path do %>
+	<button class="btn btn-default">새 프로젝트</button>
+<% end %>
+<br><br>
+<div class="row">
 	<% @projects.each do |project| %>
-		<tr>
-			<td><%=project.프로젝트명 %></td>
-			<td><%=project.목표 %></td>
-			<td><%=link_to '보기', project_path(project) %></td>
-			<td><% if project.user.id == current_user.id %>
-  	 		<%= link_to '|삭제', project_path(project), method: "delete", data: {confirm: 'Are you sure?'} %>
-  			<% end %>
-  		</td>
-			<td><% if project.user.id == current_user.id %>
-				<%=link_to '|편집', edit_project_path(project) %>
+		<div class="col-md-3 col-sm-4 col-xs-12">
+			<div class="thumbnail">
+				<%= link_to project_path(project) do %>
+				<h3><%=project.프로젝트명 %></h3>
 				<% end %>
-			</td>
-		</tr>
+				<p>목표 : <%=project.목표 %></p>
+				<div class="text-right">
+					<% if current_user == project.user %>
+						<%= link_to edit_project_path(project) do %>
+							<span class="glyphicon glyphicon-edit"></span>
+						<% end %>
+						<%= link_to project_path(project), method: "delete", data: {confirm: 'Are you sure?'} do %>
+							<span class="glyphicon glyphicon-trash"></span>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
 	<% end %>
-</table>
+</div>
