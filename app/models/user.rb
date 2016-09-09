@@ -5,4 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :projects
+  has_many :comments
+  has_many :likes
+  has_many :liked_projects, through: :likes, source: :project
+
+  def is_like?(project)
+  	Like.find_by(user_id: self.id, project_id: project.id).present?
+  end
 end

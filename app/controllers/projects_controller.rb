@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
 	before_action :authenticate_user!, :except => [:show, :index]
+	before_action :check_ownership!, only: [:update, :destroy]
 	def new
 	end
 
@@ -44,4 +45,9 @@ class ProjectsController < ApplicationController
 		def project_params
 			params.require(:project).permit(:프로젝트명, :일정, :목표)
 		end
+
+		def check_ownership!
+		@project = Project.find_by(id: params[:id])
+		redirect_to root_path if @project.user.id != current_user.id
+	end
 end
