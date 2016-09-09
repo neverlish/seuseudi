@@ -13,5 +13,26 @@
 	<%= @project.목표 %>
 </p>
 
+<h4>댓글</h4>
+<% @project.comments.each do |comment| %>
+ 
+  <p>
+    <strong><%=comment.user.username %></strong>
+    <%= comment.body %>
+  </p>
+<% end %>
+
+<h4>댓글달기</h4>
+<%=form_for([@project, @project.comments.build]) do |f| %>
+	<p>	
+		<%= f.label :comment %><br>
+		<%= f.text_area :body %>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>
+
 <%=link_to 'Edit', edit_project_path(@project) %>
 <%=link_to 'Back', projects_path %>
+
