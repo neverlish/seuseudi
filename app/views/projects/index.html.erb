@@ -11,6 +11,8 @@
 				<h3><%=project.프로젝트명 %></h3>
 				<% end %>
 				<p>목표 : <%=project.목표 %></p>
+				<%= link_to 'Join', project_project_users_path(project), method: :post %>
+        <%= link_to 'Leave', project_project_users_path(project), method: :delete %>
 				<div class="text-right">
 					<% if current_user == project.user %>
 						<%= link_to edit_project_path(project) do %>

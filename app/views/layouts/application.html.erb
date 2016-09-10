@@ -9,8 +9,25 @@
 
   <body>
   	<%= render 'layouts/navbar' %>
-		<div class="container" style="margin-top: 70px;">
-    	<%= yield %>
+
+		<div class="fluid-container" style="margin-top: 70px">
+  <div class="row">
+    <div class="col-sm-2" style="position: fixed; top: 70px; left:0;">
+      <% if user_signed_in? %>
+        <h5>Projects</h5>
+        <ul>
+          <% current_user.projects.each do |project| %>
+            <li><%= link_to project.프로젝트명, project, data: {behavior: "chatroom-link", project_id: project.id} %></li>
+          <% end %>
+        </ul>
+      <% end %>
     </div>
-  </body>
+    
+    <div class="col-sm-10 col-sm-offset-2">
+    <%= yield %>
+    </div>
+  </div>
+</div>
+
+</body>
 </html>
