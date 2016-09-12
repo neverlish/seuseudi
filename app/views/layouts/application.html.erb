@@ -19,6 +19,7 @@
           <% current_user.projects.each do |project| %>
             <li><%= link_to project.프로젝트명, project, data: {behavior: "project-link", project_id: project.id} %></li>
           <% end %>
+        
         </ul>
       <% end %>
     </div>
