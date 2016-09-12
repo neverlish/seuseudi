@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :likes
   has_many :liked_projects, through: :likes, source: :project
   has_many :project_users
-  has_many :projects, through: :project_users, source: :user
+  has_many :joined_projects, through: :project_users, source: :project
 
   def is_like?(project)
   	Like.find_by(user_id: self.id, project_id: project.id).present?

@@ -6,13 +6,16 @@
 <div class="row">
 	<% @projects.each do |project| %>
 		<div class="col-md-3 col-sm-4 col-xs-12">
-			<div class="thumbnail">
+			<div class="thumbnail" style="height: 150px;">
 				<%= link_to project_path(project) do %>
 				<h3><%=project.프로젝트명 %></h3>
 				<% end %>
 				<p>목표 : <%=project.목표 %></p>
-				<%= link_to 'Join', project_project_users_path(project), method: :post %>
-        <%= link_to 'Leave', project_project_users_path(project), method: :delete %>
+				<% if current_user.joined_projects.pluck(:id).include?(project.id) %>
+					<%= link_to 'Leave', project_project_users_path(project), method: :delete %>
+				<% else %>
+        	<%= link_to 'Join', project_project_users_path(project), method: :post %>
+        <% end %>
 				<div class="text-right">
 					<% if current_user == project.user %>
 						<%= link_to edit_project_path(project) do %>
