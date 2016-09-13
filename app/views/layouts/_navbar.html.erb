@@ -19,7 +19,7 @@
       <li><a href="/#">#</a></li>
 
       <% if user_signed_in? %>
-        <li id="profile", style='padding:1px'><a><%= image_tag(current_user.image, size: '20x20', style:'border-radius:3px;vertical-align:top;') if current_user.image %>  <%= current_user.name %></a></li>
+        <li class="profile", style='padding:15px'><a><%= image_tag(current_user.image, size: '20x20', style:'border-radius:3px;vertical-align:top;') if current_user.image %>  <%= current_user.name %></a></li>
         
         <li><%= link_to "로그아웃", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?" } %></li>
       <% else %>
@@ -27,7 +27,7 @@
         <li><%= link_to "페이스북으로 로그인", user_facebook_omniauth_authorize_path %></li>
       <% end %>
       <% if user_signed_in? %>
-      <li class="profile"><a href=""><%= current_user.username %></a></li>
+      <li class="profile", style='padding:15px'><%= image_tag(current_user.avatar, :width => 30) %>  <%= current_user.username %></a></li>
       <% end %>
     </ul>  
   </div><!-- /.navbar-collapse -->

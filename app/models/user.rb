@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :project_users
   has_many :joined_projects, through: :project_users, source: :project
 
+  mount_uploader :avatar, AvatarUploader
+
   def is_like?(project)
   	Like.find_by(user_id: self.id, project_id: project.id).present?
   end
