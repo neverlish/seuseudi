@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 20160913031213) do
     t.string   "프로젝트명"
     t.text     "일정"
     t.text     "목표"
+    t.string   "시작일자"
+    t.string   "종료일자"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

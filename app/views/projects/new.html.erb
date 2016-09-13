@@ -8,6 +8,16 @@
 	<p>
 		<%= f.file_field :photo %>
 	</p>
+
+	<p>
+		<%= f.label :시작일자 %><br>
+		<%= f.date_field :시작일자 %>
+	</p>
+
+	<p>
+		<%= f.label :종료일자 %><br>
+		<%= f.date_field :종료일자 %>
+	</p>
 	<p>
 		<%= f.label :일정 %><br>
 		<%= f.text_area :일정 %>

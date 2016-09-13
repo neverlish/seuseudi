@@ -43,7 +43,7 @@ class ProjectsController < ApplicationController
 
 	private
 		def project_params
-			params.require(:project).permit(:프로젝트명, :일정, :목표, :photo)
+			params.require(:project).permit(:프로젝트명, :일정, :목표, :photo, :시작일자, :종료일자)
 		end
 
 		def check_ownership!
