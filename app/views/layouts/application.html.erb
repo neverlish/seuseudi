@@ -10,25 +10,34 @@
   <body>
   	<%= render 'layouts/navbar' %>
 
-		<div class="fluid-container" style="margin-top: 70px">
-  <div class="row">
-    <div class="col-md-2" style="position: fixed; top: 70px; left:0;">
-      <% if user_signed_in? %>
-        <h5>My Projects</h5>
-        <ul>
-          <% current_user.joined_projects.each do |project| %>
-            <li><%= link_to project.프로젝트명, project, data: {behavior: "project-link", project_id: project.id} %></li>
-          <% end %>
+		<div class="container" style="margin-top: 70px">
+    <div class="row">
+      <div class="col-md-2 col-sm-2 navbar-bigwidth">
+        <% if user_signed_in? %>
+          <h5>My Projects</h5>
+          <ul>
+            <% current_user.joined_projects.each do |project| %>
+              <li><%= link_to project.프로젝트명, project, data: {behavior: "project-link", project_id: project.id} %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+      <div class="col-md-2 col-sm-2 navbar-smallwidth">
+        <% if user_signed_in? %>
+          <strong>My Projects</strong>
+            <% current_user.joined_projects.each do |project| %>
+              <%= link_to project.프로젝트명, project, data: {behavior: "project-link", project_id: project.id} %>
+            <% end %>
+        <% end %>
+      </div>
+      
+      <div class="col-md-8 col-sm-10">
         
-        </ul>
-      <% end %>
-    </div>
-    
-    <div class="col-md-10 col-md-offset-2">
-      <%= yield %>
+          <%= yield %>
+      </div>
+      <div class="col-md-2 col-sm-0">
+      </div>
     </div>
   </div>
-</div>
-
 </body>
 </html>

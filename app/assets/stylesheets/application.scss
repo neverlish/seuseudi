@@ -20,3 +20,17 @@ hr {
 	margin:0;
 	padding:0;
 }
+
+
+.navbar-smallwidth {
+	display: none;
+}
+
+@media (max-width: 768px) {
+	.navbar-bigwidth {
+		display: none;
+	}
+	.navbar-smallwidth {
+		display: block;
+	}
+}
