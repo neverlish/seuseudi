@@ -10,6 +10,11 @@
 	<% end %>
 </div>
 
+<div class="text-center">
+<%= image_tag @project.photo, :width => 400 %>
+</div>
+
+
 <div class="row">
 	<div class="col-md-6 col-sm-6 col-xs-12">
 		<div class="alert alert-warning">
@@ -20,6 +25,7 @@
 	<div class="col-md-6 col-sm-6 col-xs-12">
 		<div class="alert alert-info">
 			<span class="glyphicon glyphicon-calendar"></span>
+			프로젝트 기간: <%= @project.시작일자 %>~<%= @project.종료일자 %><br>
 			<%= @project.일정 %>
 		</div>
 	</div>

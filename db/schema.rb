@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160912052348) do
+ActiveRecord::Schema.define(version: 20160913031213) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -44,9 +44,12 @@ ActiveRecord::Schema.define(version: 20160912052348) do
     t.string   "프로젝트명"
     t.text     "일정"
     t.text     "목표"
+    t.string   "시작일자"
+    t.string   "종료일자"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "photo"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
@@ -68,6 +71,7 @@ ActiveRecord::Schema.define(version: 20160912052348) do
     t.string   "uid"
     t.string   "name"
     t.string   "image"
+    t.string   "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
