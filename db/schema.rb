@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914062331) do
+ActiveRecord::Schema.define(version: 20160914134036) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -65,6 +65,15 @@ ActiveRecord::Schema.define(version: 20160914062331) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_results_on_user_id"
+  end
+
+  create_table "thumbsups", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "result_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["result_id"], name: "index_thumbsups_on_result_id"
+    t.index ["user_id"], name: "index_thumbsups_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
