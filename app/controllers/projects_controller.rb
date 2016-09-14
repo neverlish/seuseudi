@@ -7,8 +7,8 @@ class ProjectsController < ApplicationController
 	def create
 		@project = Project.new(project_params)
 		@project.user = current_user
-
 		@project.save
+		@project.project_users.create(user: current_user)
 		redirect_to @project
 	end
 

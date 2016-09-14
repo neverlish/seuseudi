@@ -3,7 +3,7 @@ class ProjectUsersController < ApplicationController
 	before_action :set_project
 
 	def create
-		if @project.project_users.length < @project.인원
+		if (@project.project_users.length < @project.인원)
 			@project_user = @project.project_users.where(user_id: current_user.id).first_or_create
 			redirect_to @project
 		else 
@@ -12,7 +12,9 @@ class ProjectUsersController < ApplicationController
 	end
 
 	def destroy
-		@project_user = @project.project_users.where(user_id: current_user.id).destroy_all
+		if (@project.user != current_user)
+			@project_user = @project.project_users.where(user_id: current_user.id).destroy_all
+		end
 		redirect_to projects_path
 	end
 
