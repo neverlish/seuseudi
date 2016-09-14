@@ -1,4 +1,15 @@
 <h3><%= @project.프로젝트명 %></h3>
+<h5>host: <%= @project.user.name || @project.user.username %></h5>
+<p class="label label-default"><%= @project.created_at.strftime("%Y/%m/%d") %></p>
+<p>
+	<% if user_signed_in? %>
+		<% if current_user.joined_projects.pluck(:id).include?(@project.id) %>
+			<%= link_to 'Leave', project_project_users_path(@project), method: :delete %>
+		<% else %>
+	  	<%= link_to 'Join', project_project_users_path(@project), method: :post %>
+	  <% end %>
+	<% end %>
+</p>
 <div class="text-right">
 	<% if current_user == @project.user %>
 		<%= link_to edit_project_path(@project) do %>
@@ -11,35 +22,38 @@
 </div>
 
 <div class="text-center">
-<%= image_tag @project.photo, :width => 400 %>
+<%= image_tag @project.photo, style: "width: 400px; margin-bottom: 30px;" %>
 </div>
 
-
 <div class="row">
-	<div class="col-md-6 col-sm-6 col-xs-12">
+	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="alert alert-warning">
 			<span class="glyphicon glyphicon-exclamation-sign"></span>
 			<%= @project.목표 %>
 		</div>
 	</div>
-	<div class="col-md-6 col-sm-6 col-xs-12">
+	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="alert alert-info">
 			<span class="glyphicon glyphicon-calendar"></span>
-			프로젝트 기간: <%= @project.시작일자 %>~<%= @project.종료일자 %><br>
+			<strong>프로젝트 기간</strong> 
+			<br><%= @project.시작일자 %>~<%= @project.종료일자 %><br>
 			<%= @project.일정 %>
 		</div>
 	</div>
 </div>
 
 <div class="alert alert-success">
-	<span class="glyphicon glyphicon-th-list"></span>
+	<span class="glyphicon glyphicon-th-list"></span> 참가자
+	<% @project.project_users.each do |user| %>
+		<%= User.find(user.user_id).username || User.find(user.user_id).name %> 
+	<% end %>
 </div>
-<ul class="list-group">
+<!-- <ul class="list-group">
   <li class="list-group-item">
     <span class="badge">14</span>
     Cras justo odio
   </li>
-</ul>
+</ul> -->
 
 <% if current_user.is_like?(@project) %>
   <%= link_to project_like_path(@project), method: "post" do %>

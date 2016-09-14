@@ -15,7 +15,7 @@ class ProjectUsersController < ApplicationController
 		if (@project.user != current_user)
 			@project_user = @project.project_users.where(user_id: current_user.id).destroy_all
 		end
-		redirect_to projects_path
+		redirect_to :back
 	end
 
 	private
