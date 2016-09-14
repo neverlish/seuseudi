@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160913031213) do
+ActiveRecord::Schema.define(version: 20160914062331) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -51,6 +51,19 @@ ActiveRecord::Schema.define(version: 20160913031213) do
     t.datetime "updated_at", null: false
     t.string   "photo"
     t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.string   "프로젝트명"
+    t.text     "소개"
+    t.text     "소감"
+    t.string   "시작일자"
+    t.string   "종료일자"
+    t.string   "attachment"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_results_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

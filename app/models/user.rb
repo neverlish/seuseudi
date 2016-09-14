@@ -10,7 +10,8 @@ class User < ApplicationRecord
   has_many :liked_projects, through: :likes, source: :project
   has_many :project_users
   has_many :joined_projects, through: :project_users, source: :project
-
+  has_many :results
+  
   mount_uploader :avatar, AvatarUploader
 
   def is_like?(project)

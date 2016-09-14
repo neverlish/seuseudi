@@ -1,0 +1,31 @@
+<h1>프로젝트 결과</h1>
+<%= link_to new_result_path do %>
+	<button class="btn btn-default">새 결과물 쓰기</button>
+<% end %>
+<br><br>
+
+<div class="row">
+	<% @results.each do |result| %>
+		<div class="col-md-4 col-sm-4 col-xs-6">
+			<div class="thumbnail" style="height: 150px;">
+				<%= link_to result_path(result) do %>
+				<h3><%=result.프로젝트명 %></h3>
+				<% end %>
+				<p>작성자: <%=result.user.name || result.user.username%></p> 
+				<p class="label label-default"><%= result.created_at.strftime("%Y/%m/%d") %></p>
+	
+
+				<div class="text-right">
+					<% if current_user == result.user %>
+						<%= link_to edit_result_path(result) do %>
+							<span class="glyphicon glyphicon-edit"></span>
+						<% end %>
+						<%= link_to result_path(result), method: "delete", data: {confirm: 'Are you sure?'} do %>
+							<span class="glyphicon glyphicon-trash"></span>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	<% end %>
+</div>

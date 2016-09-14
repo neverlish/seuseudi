@@ -7,6 +7,7 @@ Rails.application.routes.draw do
  	post "/like", to: "likes#like_toggle"
  end
 
+ resources :results
 
  root 'projects#index'
 end

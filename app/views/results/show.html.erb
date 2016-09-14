@@ -1,0 +1,35 @@
+<h3><%= @result.프로젝트명 %></h3>
+<div class="text-right">
+	<% if current_user == @result.user %>
+		<%= link_to edit_result_path(@result) do %>
+			<span class="glyphicon glyphicon-edit"></span>
+		<% end %>
+		<%= link_to result_path(@result), method: "delete", data: {confirm: 'Are you sure?'} do %>
+			<span class="glyphicon glyphicon-trash"></span>
+		<% end %>
+	<% end %>
+</div>
+
+
+
+<div class="text-center">
+<td><%= link_to "첨부파일 다운로드", @result.attachment_url %></td>
+</div>
+
+
+<div class="row">
+	<div class="col-md-6 col-sm-6 col-xs-12">
+		<div class="alert alert-warning">
+			<span class="glyphicon glyphicon-exclamation-sign"></span>
+			<%= @result.소개 %>
+		</div>
+	</div>
+	<div class="col-md-6 col-sm-6 col-xs-12">
+		<div class="alert alert-info">
+			<span class="glyphicon glyphicon-calendar"></span>
+			프로젝트 기간: <%= @result.시작일자 %>~<%= @result.종료일자 %><br>
+			<%= @result.소감 %>
+		</div>
+	</div>
+</div>
+
