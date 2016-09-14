@@ -33,3 +33,37 @@
 	</div>
 </div>
 
+<% if current_user.is_thumbsup?(@result) %>
+  <%= link_to result_thumbsup_path(@result), method: "post" do %>
+  	<span class="glyphicon glyphicon-thumbs-down"></span>
+  <% end %>
+<% else %>
+  <%= link_to result_thumbsup_path(@result), method: "post" do %>
+  	<span class="glyphicon glyphicon-thumbs-up"></span>
+  <% end %>
+<% end %>
+<%= @result.thumbsups.size %> likes
+
+<hr>
+<br>
+<% @result.remarks.each do |remark| %>
+	<p>
+    <strong><%=remark.user.username || remark.user.name %></strong>
+    <%= remark.body %>
+  	<% if remark.user.id == current_user.id %>
+  	 <%= link_to result_remark_path(@result, remark), method: "delete" do %>
+  	 	<span class="glyphicon glyphicon-trash"></span>
+  	 <% end %>
+  	<% end %>
+  </p>
+<% end %>
+<div class="form-group">
+<%= form_for([@result, @result.remarks.build]) do |f| %>
+	<p>	
+		<%= f.text_area :body, class: "form-control", placeholder: "new comment" %>
+	</p>
+	<p>
+		<%= f.submit class: "btn btn-default" %>
+	</p>
+<% end %>
+

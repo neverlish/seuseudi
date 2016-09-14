@@ -11,11 +11,17 @@ class User < ApplicationRecord
   has_many :project_users
   has_many :joined_projects, through: :project_users, source: :project
   has_many :results
+  has_many :thumbsups
+  has_many :thumbsup_results, through: :thumbsups, source: :result
   
   mount_uploader :avatar, AvatarUploader
 
   def is_like?(project)
   	Like.find_by(user_id: self.id, project_id: project.id).present?
+  end
+
+  def is_thumbsup?(result)
+    Thumbsup.find_by(user_id: self.id, result_id: result.id).present?
   end
 
   def self.find_for_facebook_oauth(auth)
