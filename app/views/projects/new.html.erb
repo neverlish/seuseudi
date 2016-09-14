@@ -7,6 +7,9 @@
 		<%= f.file_field :photo %>
 	</div>
 	<div class="form-group">
+		<%= f.input :인원, as: :integer, label: false, placeholder: '제한인원', input_html: { class: 'form-control' } %>
+	</div>
+	<div class="form-group">
 		시작일자 <%= f.date_field :시작일자, input_html: { class: 'form-control' } %>
 	</div>
 	<div class="form-group">

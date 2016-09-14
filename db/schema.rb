@@ -46,10 +46,11 @@ ActiveRecord::Schema.define(version: 20160914062331) do
     t.text     "목표"
     t.string   "시작일자"
     t.string   "종료일자"
+    t.integer  "인원"
+    t.string   "photo"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "photo"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
@@ -67,6 +68,11 @@ ActiveRecord::Schema.define(version: 20160914062331) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string   "image"
+    t.string   "name"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "avatar"
     t.string   "username"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -80,11 +86,6 @@ ActiveRecord::Schema.define(version: 20160914062331) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "name"
-    t.string   "image"
-    t.string   "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

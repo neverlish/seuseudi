@@ -6,6 +6,8 @@ class CreateProjects < ActiveRecord::Migration[5.0]
       t.text :목표
       t.string :시작일자
       t.string :종료일자
+      t.integer :인원
+      t.string :photo
       t.references :user, foreign_key: true
 
       t.timestamps
