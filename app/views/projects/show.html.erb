@@ -56,7 +56,7 @@
 <br>
 <% @project.comments.each do |comment| %>
 	<p>
-    <strong><%=comment.user.username %></strong>
+    <strong><%=comment.user.username || comment.user.name %></strong>
     <%= comment.body %>
   	<% if comment.user.id == current_user.id %>
   	 <%= link_to project_comment_path(@project, comment), method: "delete" do %>

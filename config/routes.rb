@@ -8,6 +8,7 @@ Rails.application.routes.draw do
  end
 
  resources :results do
+ 	resources :remarks
  	post "/thumbsup", to: "thumbsups#thumbsup_toggle"
  end
 
