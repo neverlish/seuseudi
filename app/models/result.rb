@@ -6,4 +6,6 @@ class Result < ApplicationRecord
 
 	mount_uploader :attachment, AttachmentUploader
 
+	validates :프로젝트명, :소감, presence: true
+
 end

@@ -2,14 +2,18 @@ class ResultsController < ApplicationController
 	before_action :authenticate_user!, :except => [:show, :index]
 	before_action :check_ownership!, only: [:update, :destroy]
 	def new
+		@result = Result.new
 	end
 
 	def create
 		@result = Result.new(result_params)
 		@result.user = current_user
 
-		@result.save
-		redirect_to @result
+		if @result.save
+			redirect_to @result
+		else
+			render 'new'
+		end
 	end
 
 	def show

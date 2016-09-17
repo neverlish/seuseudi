@@ -2,14 +2,18 @@ class ProjectsController < ApplicationController
 	before_action :authenticate_user!, :except => [:show, :index]
 	before_action :check_ownership!, only: [:update, :destroy]
 	def new
+		@project = Project.new
 	end
 
 	def create
 		@project = Project.new(project_params)
 		@project.user = current_user
-		@project.save
-		@project.project_users.create(user: current_user)
-		redirect_to @project
+		if @project.save
+			@project.project_users.create(user: current_user)
+			redirect_to @project
+		else
+			render 'new'
+		end
 	end
 
 	def show

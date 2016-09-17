@@ -1,5 +1,16 @@
 <h1>New Result</h1>
 <%= simple_form_for :result, url: results_path do |f| %>
+<% if @result.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@result.errors.count, "error") %> prohibited
+      this result from being saved:</h2>
+    <ul>
+    <% @result.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
 	<div class="form-group">
 		<%= f.input :프로젝트명, input_html: { class: 'form-control' }, label: false, placeholder: '프로젝트명' %>
 	</div>
