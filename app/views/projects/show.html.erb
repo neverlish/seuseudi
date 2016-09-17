@@ -1,4 +1,4 @@
-<h3><%= @project.프로젝트명 %></h3>
+<h1><%= @project.프로젝트명 %></h1>
 <h5>host: <%= @project.user.name || @project.user.username %></h5>
 <p class="label label-default"><%= @project.created_at.strftime("%Y/%m/%d") %></p>
 <p>
@@ -22,14 +22,15 @@
 </div>
 
 <div class="text-center">
-<%= image_tag @project.photo, style: "width: 400px; margin-bottom: 30px;" %>
+<%= image_tag @project.photo, style: "width: 650px; margin-bottom: 30px;" %>
 </div>
 
 <div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="alert alert-warning">
 			<span class="glyphicon glyphicon-exclamation-sign"></span>
-			<%= @project.목표 %>
+			<span><b>프로젝트 목표</b><span><br>
+			 <%= @project.목표 %>
 		</div>
 	</div>
 	<div class="col-md-12 col-sm-12 col-xs-12">
@@ -43,7 +44,8 @@
 </div>
 
 <div class="alert alert-success">
-	<span class="glyphicon glyphicon-th-list"></span> 참가자
+	<span class="glyphicon glyphicon-th-list"></span> 
+	<span><b>참가자</b></span>
 	<% @project.project_users.each do |user| %>
 		<%= User.find(user.user_id).username || User.find(user.user_id).name %> 
 	<% end %>
