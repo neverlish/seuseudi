@@ -6,8 +6,10 @@ class ResultsController < ApplicationController
 	end
 
 	def create
-		@result = Result.new(result_params)
+		@project = Project.find(params[:project_id])
+		@result = @project.results.create(result_params)
 		@result.user = current_user
+		@result.project_id = params[:project_id]
 
 		if @result.save
 			redirect_to @result
@@ -47,7 +49,7 @@ class ResultsController < ApplicationController
 
 	private
 		def result_params
-			params.require(:result).permit(:프로젝트명, :소개, :소감, :시작일자, :종료일자, :attachment)
+			params.require(:result).permit(:project_id, :프로젝트명, :소개, :소감, :시작일자, :종료일자, :attachment)
 		end
 
 		def check_ownership!

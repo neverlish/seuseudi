@@ -6,13 +6,14 @@ Rails.application.routes.draw do
  	resource :project_users
  	resources :notices
  	post "/like", to: "likes#like_toggle"
- 	get "/joined/:id", to: "projects#joined"
+ 	get "/joined", to: "projects#joined"
+ 	resources :results
  end
-
  resources :results do
  	resources :remarks
  	post "/thumbsup", to: "thumbsups#thumbsup_toggle"
  end
+
 
  root 'projects#index'
 end

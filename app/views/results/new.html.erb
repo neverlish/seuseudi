@@ -1,5 +1,5 @@
 <h1>New Result</h1>
-<%= simple_form_for :result, url: results_path do |f| %>
+<%= simple_form_for :result, url: project_results_path do |f| %>
 <% if @result.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@result.errors.count, "error") %> prohibited
@@ -25,10 +25,10 @@
 		첨부파일 <%= f.file_field :attachment, input_html: { class: 'form-control' } %>
 	</div>
 	<div class="form-group">
-		<%= f.input :소개, input_html: { class: 'form-control' }, label: false, placeholder: '프로젝트 소개' %>
+		<%= f.input :소개, as: :text, input_html: { class: 'form-control' }, label: false, placeholder: '프로젝트 소개' %>
 	</div>
 	<div class="form-group">
-		<%= f.input :소감, input_html: { class: 'form-control' }, label: false, placeholder: '소감' %>
+		<%= f.input :소감, as: :text, input_html: { class: 'form-control' }, label: false, placeholder: '소감' %>
 	</div>
 	<div class="form-group">
 		<%= f.button :submit, class: 'btn btn-default' %>

@@ -17,7 +17,7 @@
           <h5>My Projects</h5>
           <ul>
             <% current_user.joined_projects.each do |project| %>
-              <li><%= link_to project.프로젝트명, project, data: {behavior: "project-link", project_id: project.id} %></li>
+              <li><%= link_to project.프로젝트명, project_joined_path(project), data: {behavior: "project-link", project_id: project.id} %></li>
             <% end %>
           </ul>
         <% end %>

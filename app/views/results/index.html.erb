@@ -1,13 +1,10 @@
 <h1>프로젝트 결과</h1>
-<%= link_to new_result_path do %>
-	<button class="btn btn-default">새 결과물 쓰기</button>
-<% end %>
 <br><br>
 
 <div class="row">
 	<% @results.each do |result| %>
 		<div class="col-md-4 col-sm-4 col-xs-6">
-			<div class="thumbnail" style="height: 150px;">
+			<div class="thumbnail" style="height: 180px;">
 				<%= link_to result_path(result) do %>
 				<h3><%=result.프로젝트명 %></h3>
 				<% end %>

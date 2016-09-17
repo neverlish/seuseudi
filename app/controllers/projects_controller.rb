@@ -46,7 +46,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def joined
-		@project = Project.find(params[:id])
+		@project = Project.find(params[:project_id])
 	end
 
 	private
