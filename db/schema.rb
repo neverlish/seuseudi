@@ -82,8 +82,10 @@ ActiveRecord::Schema.define(version: 20160917040036) do
     t.string   "종료일자"
     t.string   "attachment"
     t.integer  "user_id"
+    t.integer  "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_results_on_project_id"
     t.index ["user_id"], name: "index_results_on_user_id"
   end
 

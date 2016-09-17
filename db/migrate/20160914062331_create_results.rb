@@ -8,6 +8,7 @@ class CreateResults < ActiveRecord::Migration[5.0]
       t.string :종료일자
       t.string :attachment
       t.references :user, foreign_key: true
+      t.references :project, foreign_key: true
       t.timestamps
     end
   end
