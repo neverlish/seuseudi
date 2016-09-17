@@ -22,6 +22,9 @@
 		종료일자 <%= f.date_field :종료일자, input_html: { class: 'form-control' } %>
 	</div>
 	<div class="form-group">
+		이미지업로드 <%= f.file_field :image %>
+	</div>
+	<div class="form-group">
 		첨부파일 <%= f.file_field :attachment, input_html: { class: 'form-control' } %>
 	</div>
 	<div class="form-group">

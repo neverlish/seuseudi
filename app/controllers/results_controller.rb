@@ -49,7 +49,7 @@ class ResultsController < ApplicationController
 
 	private
 		def result_params
-			params.require(:result).permit(:project_id, :프로젝트명, :소개, :소감, :시작일자, :종료일자, :attachment)
+			params.require(:result).permit(:project_id, :프로젝트명, :소개, :소감, :시작일자, :종료일자, :attachment, :image)
 		end
 
 		def check_ownership!

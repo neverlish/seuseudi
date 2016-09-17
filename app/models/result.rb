@@ -7,6 +7,7 @@ class Result < ApplicationRecord
 	has_many :remarks
 
 	mount_uploader :attachment, AttachmentUploader
+	mount_uploader :image, ImageUploader
 
 	validates :프로젝트명, :소감, presence: true
 
