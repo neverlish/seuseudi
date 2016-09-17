@@ -26,7 +26,7 @@
         <% if user_signed_in? %>
           <strong>My Projects</strong>
             <% current_user.joined_projects.each do |project| %>
-              <%= link_to project.프로젝트명, project, data: {behavior: "project-link", project_id: project.id} %>
+              <%= link_to project.프로젝트명, project_joined_path(project), data: {behavior: "project-link", project_id: project.id} %>
             <% end %>
         <% end %>
       </div>
