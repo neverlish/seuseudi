@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 <h3><%= @result.프로젝트명 %></h3>
 <div class="text-center">
 <%= image_tag @result.image, style: "width: 650px; margin-bottom: 30px;" %>
 </div>
+=======
+<h1><%= @result.프로젝트명 %></h1>
+<h5>작성자: <%= @result.user.name || @result.user.username %></h5>
+>>>>>>> 13c43cc79b70589bc84894d554bfda6b8b2e547b
 <div class="text-right">
 	<% if current_user == @result.user %>
 		<%= link_to edit_result_path(@result) do %>
@@ -18,19 +23,26 @@
 <div class="text-center">
 <td><%= link_to "첨부파일 다운로드", @result.attachment_url %></td>
 </div>
+<br>
 
 
 <div class="row">
-	<div class="col-md-6 col-sm-6 col-xs-12">
+	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="alert alert-warning">
 			<span class="glyphicon glyphicon-exclamation-sign"></span>
-			<%= @result.소개 %>
+			<strong>프로젝트 소개</strong><br>
+			<%= @result.소개 %><br>
+			<br>
+			<hr>
+			<br>
+			<span class="glyphicon glyphicon-calendar"></span>
+			<strong>프로젝트 기간</strong><br>
+			<%= @result.시작일자 %>~<%= @result.종료일자 %><br>
 		</div>
 	</div>
-	<div class="col-md-6 col-sm-6 col-xs-12">
+	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="alert alert-info">
-			<span class="glyphicon glyphicon-calendar"></span>
-			프로젝트 기간: <%= @result.시작일자 %>~<%= @result.종료일자 %><br>
+			<strong>참여자 소감</strong><br>
 			<%= @result.소감 %>
 		</div>
 	</div>
