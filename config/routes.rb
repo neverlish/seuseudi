@@ -4,7 +4,9 @@ Rails.application.routes.draw do
  resources :projects do
  	resources :comments
  	resource :project_users
+ 	resources :notices
  	post "/like", to: "likes#like_toggle"
+ 	get "/joined/:id", to: "projects#joined"
  end
 
  resources :results do

@@ -41,6 +41,10 @@ class ProjectsController < ApplicationController
 		redirect_to projects_path
 	end
 
+	def joined
+		@project = Project.find(params[:id])
+	end
+
 	private
 		def project_params
 			params.require(:project).permit(:프로젝트명, :일정, :목표, :시작일자, :종료일자, :photo, :인원)

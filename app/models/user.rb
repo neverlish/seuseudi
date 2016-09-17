@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :comments
+  has_many :notices
   has_many :likes
   has_many :liked_projects, through: :likes, source: :project
   has_many :project_users
