@@ -9,14 +9,15 @@
       <span class="icon-bar"></span>
     </button>
     <a class="navbar-brand" href="/">
-    ㅅㅅㄷ</a>
+    ㅅㅅㄷ Helper</a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <li><a href="/results">
-    플젝결과</a></li>
+      <li><a href="/">프로젝트</a></li>
+      <li><a href="/results">플젝결과</a></li>
+      
       <% if user_signed_in? %>
         <% if current_user.image? %>
           <li class="profile"><a><%= image_tag(current_user.image, size: '20x20', style:'border-radius:3px;vertical-align:top;') if current_user.image %>  <%= current_user.name %></a></li>
