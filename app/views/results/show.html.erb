@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-<h3><%= @result.프로젝트명 %></h3>
-<div class="text-center">
-<%= image_tag @result.image, style: "width: 650px; margin-bottom: 30px;" %>
-</div>
-=======
 <h1><%= @result.프로젝트명 %></h1>
 <h5>작성자: <%= @result.user.name || @result.user.username %></h5>
->>>>>>> 13c43cc79b70589bc84894d554bfda6b8b2e547b
 <div class="text-right">
 	<% if current_user == @result.user %>
 		<%= link_to edit_result_path(@result) do %>
