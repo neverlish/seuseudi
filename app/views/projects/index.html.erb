@@ -21,8 +21,9 @@
 				<p class="label label-default"><%= project.created_at.strftime("%Y/%m/%d") %></p>
 				
 					<% if user_signed_in? %>
+
 		<% if current_user.joined_projects.pluck(:id).exclude?(project.id) %>
-		<%= link_to 'Join', project_project_users_path(@project), method: :post %>
+		<%= link_to 'Join', project_project_users_path(project), method: :post %>
 		<% elsif current_user != project.user %>
 			<%= link_to 'Leave', project_project_users_path(project), method: :delete %>
 		<% end %>
