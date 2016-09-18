@@ -8,27 +8,27 @@
 <div class="row">
 	<% @projects.each do |project| %>
 		<div class="col-md-4 col-sm-4 col-xs-6">
-			<div class="thumbnail" style="height: 350px;">
-				<div style="height: 130px;">
- 					<%= image_tag project.photo, style: "height: 100%;" %>
+			<div class="thumbnail" style="min-height: 320px;">
+				<div style="height: 130px; padding: 0 auto;" class="text-center">
+ 					<%= image_tag project.photo, style: "height: 100%; max-width: 100%; margin: 0 auto;" %>
 				</div>
 				<%= link_to project_path(project) do %>
 				<h3><%=project.프로젝트명 %></h3>
 				<% end %>
-				<p>목표 : <%=project.목표 %></p>
-				<p><%= project.likes.size %> likes</p>
-				<p>host : <%=project.user.name || project.user.username%></p> 
-				<p>인원 : <%= project.project_users.length %>/<%= project.인원 %>
+				목표 : <%=project.목표 %><br>
+				<%= project.likes.size %> likes<br>
+				host : <%=project.user.name || project.user.username%><br> 
+				인원 : <%= project.project_users.length %>/<%= project.인원 %><br>
 				<p class="label label-default"><%= project.created_at.strftime("%Y/%m/%d") %></p>
 				
-					<% if user_signed_in? %>
+				<% if user_signed_in? %>
+					<% if current_user.joined_projects.pluck(:id).exclude?(project.id) %>
+					<%= link_to 'Join', project_project_users_path(project), method: :post %>
+					<% elsif current_user != project.user %>
+						<%= link_to 'Leave', project_project_users_path(project), method: :delete %>
+					<% end %>
+				<% end %>
 
-		<% if current_user.joined_projects.pluck(:id).exclude?(project.id) %>
-		<%= link_to 'Join', project_project_users_path(project), method: :post %>
-		<% elsif current_user != project.user %>
-			<%= link_to 'Leave', project_project_users_path(project), method: :delete %>
-		<% end %>
-	<% end %>
 				<div class="text-right">
 					<% if current_user == project.user %>
 						<%= link_to edit_project_path(project) do %>

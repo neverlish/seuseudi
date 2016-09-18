@@ -4,14 +4,14 @@
 <div class="row">
 	<% @results.each do |result| %>
 		<div class="col-md-4 col-sm-4 col-xs-6">
-			<div class="thumbnail" style="height: 350px;">
-				<div style="height: 130px;">
- 					<%= image_tag result.image, style: "height: 100%;" %>
-				</div>
+			<div class="thumbnail" style="min-height: 330px;">
+				<div style="height: 130px; padding: 0 auto;" class="text-center">
+ 					<%= image_tag result.image, style: "height: 100%; max-width: 100%; margin: 0 auto;" %>
+ 				</div>
 				<%= link_to result_path(result) do %>
 					<h3><%=result.프로젝트명 %></h3>
 				<% end %>
-				<p>작성자: <%=result.user.name || result.user.username%></p> 
+				<br>작성자: <%=result.user.name || result.user.username%>
 				<p class="label label-default"><%= result.created_at.strftime("%Y/%m/%d") %></p>
 				<p><%= result.thumbsups.size %> likes</p>
 

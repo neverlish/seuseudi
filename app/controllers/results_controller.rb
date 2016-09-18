@@ -8,9 +8,15 @@ class ResultsController < ApplicationController
 	def create
 		@project = Project.find(params[:project_id])
 		@result = @project.results.create(result_params)
+		
 		uploader = ImageUploader.new
 		uploader.store!(params[:image])
 		@result.image = uploader.url
+
+		attachmentuploader = AttachMentUploader.new
+		attachmentuploader.store!(params[:attachment])
+		@result.photo = attachmentuploader.url
+
 		@result.user = current_user
 		@result.project_id = params[:project_id]
 
