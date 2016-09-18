@@ -15,7 +15,7 @@ class ResultsController < ApplicationController
 
 		attachmentuploader = AttachMentUploader.new
 		attachmentuploader.store!(params[:attachment])
-		@result.photo = attachmentuploader.url
+		@result.attachment = attachmentuploader.url
 
 		@result.user = current_user
 		@result.project_id = params[:project_id]
