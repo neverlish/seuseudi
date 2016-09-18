@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
 		@project = Project.new(project_params)
 		uploader = PhotoUploader.new
 		uploader.store!(params[:photo])
+		@project.photo = uploader.url
 		@project.user = current_user
 		if @project.save
 			@project.project_users.create(user: current_user)

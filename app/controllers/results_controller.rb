@@ -10,6 +10,7 @@ class ResultsController < ApplicationController
 		@result = @project.results.create(result_params)
 		uploader = ImageUploader.new
 		uploader.store!(params[:image])
+		@result.image = uploader.url
 		@result.user = current_user
 		@result.project_id = params[:project_id]
 
