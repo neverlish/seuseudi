@@ -5,15 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :comments
-  has_many :notices
-  has_many :likes
-  has_many :liked_projects, through: :likes, source: :project
-  has_many :project_users
-  has_many :joined_projects, through: :project_users, source: :project
-  has_many :results
-  has_many :thumbsups
-  has_many :thumbsup_results, through: :thumbsups, source: :result
+  has_many :comments, dependent: :destroy
+  has_many :notices, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_projects, through: :likes, source: :project, dependent: :destroy
+  has_many :project_users, dependent: :destroy
+  has_many :joined_projects, through: :project_users, source: :project, dependent: :destroy
+  has_many :results, dependent: :destroy
+  has_many :thumbsups, dependent: :destroy
+  has_many :thumbsup_results, through: :thumbsups, source: :result, dependent: :destroy
   
   mount_uploader :avatar, AvatarUploader
 
