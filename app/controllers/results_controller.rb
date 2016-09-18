@@ -8,6 +8,8 @@ class ResultsController < ApplicationController
 	def create
 		@project = Project.find(params[:project_id])
 		@result = @project.results.create(result_params)
+		uploader = ImageUploader.new
+		uploader.store!(params[:image])
 		@result.user = current_user
 		@result.project_id = params[:project_id]
 
@@ -49,7 +51,7 @@ class ResultsController < ApplicationController
 
 	private
 		def result_params
-			params.require(:result).permit(:project_id, :프로젝트명, :소개, :소감, :시작일자, :종료일자, :attachment, :image)
+			params.require(:result).permit(:project_id, :프로젝트명, :소개, :소감, :시작일자, :종료일자, :attachment)
 		end
 
 		def check_ownership!

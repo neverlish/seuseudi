@@ -57,3 +57,5 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'omniauth-facebook'
 gem 'carrierwave'
+gem 'figaro'
+gem "fog-aws"
