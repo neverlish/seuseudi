@@ -11,7 +11,9 @@
 	<% end %>
 </div>
 
-<%= image_tag @result.image %>
+<div class="text-center">
+	<%= image_tag @result.image, style: "width: 650px; margin-bottom: 30px;" %>
+</div>
 
 <div class="text-center">
 <td><%= link_to "첨부파일 다운로드", @result.attachment_url %></td>
