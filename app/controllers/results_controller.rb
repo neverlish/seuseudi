@@ -13,7 +13,7 @@ class ResultsController < ApplicationController
 		uploader.store!(params[:image])
 		@result.image = uploader.url
 
-		attachmentuploader = AttachMentUploader.new
+		attachmentuploader = AttachmentUploader.new
 		attachmentuploader.store!(params[:attachment])
 		@result.attachment = attachmentuploader.url
 
