@@ -15,7 +15,7 @@
 				<%= link_to project_path(project) do %>
 				<h3><%=project.프로젝트명 %></h3>
 				<% end %>
-				목표 : <%=project.목표 %><br>
+				<div style="width:100%; overflow:hidden;white-space:nowrap; text-overflow:ellipsis;"><%=project.목표 %><br></div>
 				<%= project.likes.size %> likes<br>
 				host : <%=project.user.name || project.user.username%><br> 
 				인원 : <%= project.project_users.length %>/<%= project.인원 %><br>
