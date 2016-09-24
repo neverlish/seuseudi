@@ -67,7 +67,10 @@
   	<span class="glyphicon glyphicon-thumbs-up"></span>
   <% end %>
 <% end %>
-<%= @project.likes.size %> likes
+<strong><%= @project.likes.size %> likes</strong>
+<% @project.liked_users.each do |user| %>
+<%= user.name if user.name %><%= user.username if user.username %> 
+<% end %>
 <% end %>
 
 <hr>
