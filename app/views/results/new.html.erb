@@ -17,12 +17,12 @@
 
 	<div class="form-group">
 		시작일자 <%= f.date_field :시작일자, input_html: { class: 'form-control' } %>
-	</div>
+</div>
 	<div class="form-group">
 		종료일자 <%= f.date_field :종료일자, input_html: { class: 'form-control' } %>
 	</div>
 	<div class="form-group">
-		url <%= f.url_field :url %>
+		<%= f.input :url, as: :url, input_html: { class: 'form-control' }, label: false, placeholder: 'Youtube URL이 있다면 넣어주세요 (https://youtu.be/~~ 형식의 주소를 넣어주세요)' %>
 	</div>
 	<div class="form-group">
 		이미지업로드 <%= f.file_field :image %>

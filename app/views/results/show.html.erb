@@ -12,14 +12,22 @@
 </div>
 
 <div class="text-center">
+<% if @result.image? %>
 	<%= image_tag @result.image, style: "width: 650px; margin-bottom: 30px;" %>
-</div>
+<% end %>
 
-<div class="text-center">
-<td><%= link_to "첨부파일 다운로드", @result.attachment_url %></td>
-</div>
-<br>
+<% if @result.attachment_url %>
+	<%= link_to "첨부파일 다운로드", @result.attachment_url %>
+<% end %>
+<br><br>
 
+<% if @result.url %>
+<iframe width="420" height="315" src="http://youtube.com/embed/<%= @result.url.split('/').last %>">
+</iframe>
+
+<% end %>
+<br><br>
+</div>
 
 <div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
