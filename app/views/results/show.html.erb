@@ -21,7 +21,7 @@
 <% end %>
 <br><br>
 
-<% if @result.url %>
+<% if @result.url != "" %>
 <iframe width="750" height="500" src="https://youtube.com/embed/<%= @result.url.split('/').last %>">
 </iframe>
 
@@ -52,13 +52,9 @@
 </div>
 
 <% if current_user.is_thumbsup?(@result) %>
-  <%= link_to result_thumbsup_path(@result), method: "post" do %>
-  	<span class="glyphicon glyphicon-thumbs-down"></span>
-  <% end %>
+	<a class="glyphicon glyphicon-thumbs-down" id="like-toggle"></a>  
 <% else %>
-  <%= link_to result_thumbsup_path(@result), method: "post" do %>
-  	<span class="glyphicon glyphicon-thumbs-up"></span>
-  <% end %>
+	<a class="glyphicon glyphicon-thumbs-up" id="like-toggle"></a>  
 <% end %>
 <strong><%= @result.thumbsups.size %> likes</strong>
 <% @result.thumbsup_users.each do |user| %>
@@ -78,15 +74,32 @@
   	<% end %>
   </p>
 <% end %>
-<div class="form-group">
-<%= form_for([@result, @result.remarks.build]) do |f| %>
+<div>
 	<p>	
-		<%= f.text_area :body, class: "form-control", placeholder: "new comment" %>
+		<%= text_field_tag :body, nil, class: "form-control", id: "comment-body" %>
 	</p>
 	<p>
-		<%= f.submit class: "btn btn-default" %>
+		<%= submit_tag nil, class: "btn btn-default comment-submit", value: "New comment" %>
 	</p>
-<% end %>
+</div>
 
+
+<script>
+$('.comment-submit').click(() => {
+	body = $("#comment-body").val();
+	$.ajax({
+	  method: "POST",
+	  url: "/results/<%= @result.id %>/remarks",
+	  data: { remark: { body: body } }
+	})
+});
+
+$('#like-toggle').click(() => {
+	$.ajax({
+		method: "POST",
+		url: "/results/<%= @result.id %>/thumbsup"
+	})
+});
+</script>
 
 
