@@ -6,42 +6,44 @@
 <% end %>
 <br><br>
 <div class="row">
-	<% @projects.each do |project| %>
-		<div class="col-md-4 col-sm-4 col-xs-6">
-			<div class="thumbnail" style="min-height: 320px;">
-				<div style="height: 130px; padding: 0 auto;" class="text-center">
-					<% if project.photo.size != 0 %>
- 						<%= image_tag project.photo, style: "height: 100%; max-width: 100%; margin: 0 auto;" %>
- 					<% end %>
-				</div>
-				<%= link_to project_path(project) do %>
-				<h3><%=project.프로젝트명 %></h3>
-				<% end %>
-				<div style="width:100%; overflow:hidden;white-space:nowrap; text-overflow:ellipsis;"><%=project.목표 %><br></div>
-				<%= project.likes.size %> likes<br>
-				host : <%=project.user.name || project.user.username%><br> 
-				인원 : <%= project.project_users.length %>/<%= project.인원 %><br>
-				<p class="label label-default"><%= project.created_at.strftime("%Y/%m/%d") %></p>
-				
-				<% if user_signed_in? %>
-					<% if current_user.joined_projects.pluck(:id).exclude?(project.id) %>
-					<%= link_to 'Join', project_project_users_path(project), method: :post %>
-					<% elsif current_user != project.user %>
-						<%= link_to 'Leave', project_project_users_path(project), method: :delete %>
+	<% if @projects.length > 0 %>
+		<% @projects.each do |project| %>
+			<div class="col-md-4 col-sm-4 col-xs-6">
+				<div class="thumbnail" style="min-height: 320px;">
+					<div style="height: 130px; padding: 0 auto;" class="text-center">
+						<% if project.photo.size != 0 %>
+	 						<%= image_tag project.photo, style: "height: 100%; max-width: 100%; margin: 0 auto;" %>
+	 					<% end %>
+					</div>
+					<%= link_to project_path(project) do %>
+					<h3><%=project.프로젝트명 %></h3>
 					<% end %>
-				<% end %>
+					<div style="width:100%; overflow:hidden;white-space:nowrap; text-overflow:ellipsis;"><%=project.목표 %><br></div>
+					<%= project.likes.size %> likes<br>
+					host : <%=project.user.name || project.user.username%><br> 
+					인원 : <%= project.project_users.length %>/<%= project.인원 %><br>
+					<p class="label label-default"><%= project.created_at.strftime("%Y/%m/%d") %></p>
+					
+					<% if user_signed_in? %>
+						<% if current_user.joined_projects.pluck(:id).exclude?(project.id) %>
+						<%= link_to 'Join', project_project_users_path(project), method: :post %>
+						<% elsif current_user != project.user %>
+							<%= link_to 'Leave', project_project_users_path(project), method: :delete %>
+						<% end %>
+					<% end %>
 
-				<div class="text-right">
-					<% if current_user == project.user %>
-						<%= link_to edit_project_path(project) do %>
-							<span class="glyphicon glyphicon-edit"></span>
+					<div class="text-right">
+						<% if current_user == project.user %>
+							<%= link_to edit_project_path(project) do %>
+								<span class="glyphicon glyphicon-edit"></span>
+							<% end %>
+							<%= link_to project_path(project), method: "delete", data: {confirm: 'Are you sure?'} do %>
+								<span class="glyphicon glyphicon-trash"></span>
+							<% end %>
 						<% end %>
-						<%= link_to project_path(project), method: "delete", data: {confirm: 'Are you sure?'} do %>
-							<span class="glyphicon glyphicon-trash"></span>
-						<% end %>
-					<% end %>
+					</div>
 				</div>
 			</div>
-		</div>
+		<% end %>
 	<% end %>
 </div>
